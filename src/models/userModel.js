@@ -8,7 +8,9 @@ const getAllUser = () => {
 
 // Fungsi untuk mengirimkan data dari controller ke database
 const createUser = (body) => {
-    console.log(body);
+    const querySql = ` INSERT INTO mahasiswa (nim, nama, kelas, alamat) 
+                    VALUES ('${body.nim}', '${body.nama}', '${body.kelas}', '${body.alamat}')`;
+    return dbPool.execute(querySql);
 }
 
 // Export fungsi getAllUser agar dapat digunakan di tempat lain

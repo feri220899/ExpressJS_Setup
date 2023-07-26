@@ -31,6 +31,10 @@ const postNewUser = async (req, res) => {
       data: body
     })
   } catch (error) {
+    res.status(500).json({
+      message: 'Server Error',
+      serverMessage: error,
+    })
   }
 }
 
