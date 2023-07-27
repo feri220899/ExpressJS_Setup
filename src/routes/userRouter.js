@@ -10,13 +10,16 @@ const userMiddleware = middleware.logMiddleware
 // GET mengandung middleware
 router.get('/', userMiddleware ,userController.getAllUser);
 
+// GET detail mengandung middleware
+router.get('/:nim', userController.getByNimUser);
+
 // POST
 router.post('/', userController.postNewUser);
 
 // PUT
-router.put('/:id', userController.putUpdateUser);
+router.put('/:nim', userController.putUpdateUser);
 
 // DELETE
-router.delete('/:id', userController.deleteUser);
+router.delete('/:nim', userController.deleteUser);
 
 module.exports = router;
