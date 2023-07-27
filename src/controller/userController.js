@@ -1,5 +1,5 @@
 const userModel = require("../models/userModel.js");
-const response = require('../../response.js')
+const response = require('../response.js')
 
 // GET
 const getAllUser = async (req, res) => {
@@ -10,6 +10,7 @@ const getAllUser = async (req, res) => {
     response.errorRes("Gagal get data", error, res);
   }
 };
+
 
 const getByNimUser = async (req,res) => {
   const {nim} = req.params;
