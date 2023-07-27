@@ -10,7 +10,7 @@ const userMiddleware = middleware.logMiddleware
 // GET mengandung middleware
 router.get('/', userMiddleware ,userController.getAllUser);
 
-// GET detail mengandung middleware
+// GET DETAIL mengandung middleware
 router.get('/:nim', userController.getByNimUser);
 
 // POST

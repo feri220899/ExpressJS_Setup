@@ -1,18 +1,13 @@
 const userModel = require("../models/userModel.js");
+const response = require('../../response.js')
 
 // GET
 const getAllUser = async (req, res) => {
   try {
     const [ data ] = await userModel.getAllUser();
-    res.json({
-      message: "This Get User",
-      data: data,
-    });
+    response.successRes(200, data, "get all data success", res);
   } catch (error) {
-    res.status(500).json({
-      error: "Error fetching users",
-      serverMessage: error,
-    });
+    response.errorRes("Gagal get data", error, res);
   }
 };
 
@@ -20,15 +15,9 @@ const getByNimUser = async (req,res) => {
   const {nim} = req.params;
   try {
     const [data] = await userModel.getByNim(nim);
-    res.json({
-      message: "This Get User",
-      data: data,
-    });
+    response.successRes(200, data, `get data ${nim} success`, res);
   } catch (error) {
-    res.status(500).json({
-      error: "Error fetching users",
-      serverMessage: error,
-    });
+    response.errorRes("Gagal get data", error, res);
   }
 }
 
@@ -42,15 +31,9 @@ const postNewUser = async (req, res) => {
   }
   try {
     await userModel.createUser(body);
-    res.status(201).json({
-      message: "Create Sucsess",
-      data: body,
-    });
+    response.successRes(201, body, "sucsess post/input", res);
   } catch (error) {
-    res.status(500).json({
-      message: "Server Error",
-      serverMessage: error,
-    });
+    response.errorRes("Gagal get data", error, res);
   }
 };
 
@@ -60,18 +43,9 @@ const putUpdateUser = async (req, res) => {
   const {body} = req;
   try {
     await userModel.updateUser(body, nim);
-    res.json({
-      message: `Success Update nim : ${nim}`,
-      data: {
-        nim: nim,
-        ...body
-      }
-    });
+    response.successRes(201, body, "sucsess update", res);
   } catch (error) {
-    res.status(500).json({
-      message: "Server Error",
-      serverMessage: error,
-    });
+    response.errorRes("Gagal get data", error, res);
   }
 };
 
@@ -80,14 +54,9 @@ const deleteUser = async (req, res) => {
   const {nim} = req.params;
   try {
     await userModel.deleteUser(nim);
-    res.json({
-      message: `Success delete data : ${nim}`
-    })
+    response.successRes(201, nim, "sucsess delete", res);
   } catch (error) {
-    res.status(500).json({
-      message: "Server Error",
-      serverMessage: error,
-    });
+    response.errorRes("Gagal get data", error, res);
   }
 };
 

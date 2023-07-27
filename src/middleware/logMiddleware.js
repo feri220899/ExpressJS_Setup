@@ -3,9 +3,9 @@ const logMiddleware = (req, res, next) => {
     if(cekBody == "admin"){
         next();
     }else{
-        res.json({
-            message: "Header salah"
-        })
+        res.status(401).json({
+            message: "Belum login"
+          });
     }
 }
 
