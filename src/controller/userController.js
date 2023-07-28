@@ -12,10 +12,10 @@ const getAllUser = async (req, res) => {
 };
 
 
-const getByNimUser = async (req,res) => {
-  const {nim} = req.params;
+const getByNimUser = async (req, res) => {
+  const { nim } = req.params;
   try {
-    const [data] = await userModel.getByNim(nim);
+    const [ data ] = await userModel.getByNim(nim);
     response.successRes(200, data, `get data ${nim} success`, res);
   } catch (error) {
     response.errorRes("Gagal get data", error, res);
@@ -40,11 +40,11 @@ const postNewUser = async (req, res) => {
 
 // UPDATE
 const putUpdateUser = async (req, res) => {
-  const {nim} = req.params;
-  const {body} = req;
+  const { nim } = req.params;
+  const { body } = req;
   try {
     await userModel.updateUser(body, nim);
-    response.successRes(201, body, "sucsess update", res);
+    response.successRes(200, body, "sucsess update", res);
   } catch (error) {
     response.errorRes("Gagal get data", error, res);
   }
@@ -52,14 +52,19 @@ const putUpdateUser = async (req, res) => {
 
 // DELETE
 const deleteUser = async (req, res) => {
-  const {nim} = req.params;
+  const { nim } = req.params;
   try {
     await userModel.deleteUser(nim);
-    response.successRes(201, nim, "sucsess delete", res);
+    response.successRes(200, nim, "sucsess delete", res);
   } catch (error) {
     response.errorRes("Gagal get data", error, res);
   }
 };
+
+// POST IMG
+const uploadFile = (req, res) => {
+  response.successRes(200, '', "sucsess upload", res);
+}
 
 // EXPORT THIS MODULE
 module.exports = {
@@ -68,4 +73,5 @@ module.exports = {
   postNewUser,
   putUpdateUser,
   deleteUser,
+  uploadFile,
 };

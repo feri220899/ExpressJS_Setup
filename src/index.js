@@ -15,6 +15,16 @@ const userRoutes = require('./routes/userRouter.js')
 // 'use' untuk meanggil semua method yang ada di file userRouter
 app.use('/user', userRoutes);
 
+// unutk memanggil gambar melalaui route {url}/assets
+app.use('/assets', express.static('public/img'));
+
+// Error handling untuk semua routes
+app.use((err, req, res, next) => {
+    res.json({
+        message: err.message
+    })
+})
+
 
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`)
